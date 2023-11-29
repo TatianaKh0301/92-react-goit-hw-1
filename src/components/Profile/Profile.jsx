@@ -1,25 +1,31 @@
-export const Profile = ({username, tag, location, stats}) => (
-    <div class="profile">
-        <div class="description">
-            <img src={tag} alt="User avatar" class="avatar"/>
-            <p class="name">Petra Marica</p>
-            <p class="tag">@pmarica</p>
-            <p class="location">Salvador, Brasil</p>
-        </div>
+import { ProfileWrap, ProfileInfo, Description, Avatar } from "./Profile.styled";
+export const Profile = ({ username, avatar, tag, location, stats }) => {
+    const { followers, views, likes} = stats;
+    return (
+        <ProfileWrap>
+            <ProfileInfo>
+                <Description>
+                    <Avatar src={avatar} alt="User avatar" />
+                    <p class="name">{username}</p>
+                    <p class="tag">{tag}</p>
+                    <p class="location">{location}</p>
+                </Description>
 
-        <ul class="stats">
-            <li>
-                <span class="label">Followers</span>
-                <span class="quantity">1000</span>
-            </li>
-            <li>
-                <span class="label">Views</span>
-                <span class="quantity">2000</span>
-            </li>
-            <li>
-                <span class="label">Likes</span>
-                <span class="quantity">3000</span>
-            </li>
-        </ul>
-    </div>
-);
+                <ul class="stats">
+                    <li>
+                        <span class="label">Followers</span>
+                        <span class="quantity">{followers}</span>
+                    </li>
+                    <li>
+                        <span class="label">Views</span>
+                        <span class="quantity">{views}</span>
+                    </li>
+                    <li>
+                        <span class="label">Likes</span>
+                        <span class="quantity">{likes}</span>
+                    </li>
+                </ul>
+            </ProfileInfo>            
+        </ProfileWrap>
+    );
+};
