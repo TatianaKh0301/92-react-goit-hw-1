@@ -1,31 +1,56 @@
-import { ProfileWrap, ProfileInfo, Description, Avatar } from "./Profile.styled";
-export const Profile = ({ username, avatar, tag, location, stats }) => {
-    const { followers, views, likes} = stats;
+import PropTypes from 'prop-types';
+import { ProfileWrap, ProfileInfo, Description, ProfileAvatar, TextWrap, Name, Tag, Location, Stats, StatsItem, StatsItemContainer, Quantity, Label } from './Profile.styled';
+
+export const Profile = ({username, tag, location, avatar, stats}) => {
+    const {followers, views, likes} = stats;
     return (
         <ProfileWrap>
-            <ProfileInfo>
+            <ProfileInfo key={username}>
                 <Description>
-                    <Avatar src={avatar} alt="User avatar" />
-                    <p class="name">{username}</p>
-                    <p class="tag">{tag}</p>
-                    <p class="location">{location}</p>
+                    <ProfileAvatar
+                        src={avatar}
+                        alt="User avatar"
+                    />
+                    <TextWrap>
+                        <Name>{username}</Name>
+                        <Tag>`@${tag}`</Tag>
+                        <Location>{location}</Location>
+                    </TextWrap>                    
                 </Description>
 
-                <ul class="stats">
-                    <li>
-                        <span class="label">Followers</span>
-                        <span class="quantity">{followers}</span>
-                    </li>
-                    <li>
-                        <span class="label">Views</span>
-                        <span class="quantity">{views}</span>
-                    </li>
-                    <li>
-                        <span class="label">Likes</span>
-                        <span class="quantity">{likes}</span>
-                    </li>
-                </ul>
-            </ProfileInfo>            
+                <Stats>
+                    <StatsItem>
+                        <StatsItemContainer>
+                            <Label>Followers</Label>
+                            <Quantity>{followers}</Quantity>
+                        </StatsItemContainer>                       
+                    </StatsItem>
+                    <StatsItem>
+                        <StatsItemContainer>
+                            <Label>Views</Label>
+                            <Quantity>{views}</Quantity>
+                        </StatsItemContainer>                        
+                    </StatsItem>
+                    <StatsItem>
+                        <StatsItemContainer>
+                            <Label>Likes</Label>
+                            <Quantity>{likes}</Quantity>
+                        </StatsItemContainer>                       
+                    </StatsItem>
+                </Stats>
+            </ProfileInfo>
         </ProfileWrap>
-    );
+);
 };
+
+Profile.propTypes = {
+  username: PropTypes.string.isRequired,
+  tag: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  stats: PropTypes.shape({
+          followers: PropTypes.number.isRequired,
+          views: PropTypes.number.isRequired,
+          likes: PropTypes.number.isRequired,
+      }).isRequired,
+}
