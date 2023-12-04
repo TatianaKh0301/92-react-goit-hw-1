@@ -1,18 +1,25 @@
-export const Statistics = ({title, stats}) => {
+import { SectionWrap, SectionStatistics, TitleStatistics, StatisticsList, ItemList, SpanStatisticsWrap, Label, Percentage } from "./Statistics.styled";
+
+export const Statistics = ({title, stats=5}) => {
+    // console.log(stats);
     return (
-        <section class="statistics">
-            <h2 class="title">Upload stats</h2>
-            <ul class="stat-list">
-                {
-                    stats.map(data => (
-                        <li key={data.id} class="item" style={{backgroundColor: `${getRandomHexColor()}`}}>
-                            <span class="label">{data.label}</span>
-                            <span class="percentage">{data.persentage}</span>
-                        </li>
-                    ))
-                }              
-            </ul>
-        </section>
+        <SectionWrap>
+            <SectionStatistics>
+                <TitleStatistics>Upload stats</TitleStatistics>
+                    <StatisticsList>
+                        {   
+                        stats.map(data => (
+                            <ItemList key={data.id} style={{backgroundColor: `${getRandomHexColor()}`}}>
+                                <SpanStatisticsWrap>
+                                    <Label>{data.label}</Label>
+                                    <Percentage>{data.persentage}</Percentage>
+                                </SpanStatisticsWrap>                            
+                            </ItemList>
+                        ))
+                        }              
+                    </StatisticsList>
+            </SectionStatistics>
+        </SectionWrap>        
     );
 };
 
