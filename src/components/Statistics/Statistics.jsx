@@ -1,11 +1,11 @@
 import { SectionWrap, SectionStatistics, TitleStatistics, StatisticsList, ItemList, SpanStatisticsWrap, Label, Percentage } from "./Statistics.styled";
 
-export const Statistics = ({title, stats=5}) => {
+export const Statistics = ({title, stats}) => {
     // console.log(stats);
     return (
         <SectionWrap>
             <SectionStatistics>
-                <TitleStatistics>Upload stats</TitleStatistics>
+                {title && <TitleStatistics>{title}</TitleStatistics>}
                     <StatisticsList>
                         {   
                         stats.map(data => (

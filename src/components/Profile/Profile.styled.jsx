@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 export const ProfileWrap = styled.div`
     position: relative;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 100px;
     margin: 0 auto;
     background-color: rgb(210, 210, 247);
     width: 100vw;
